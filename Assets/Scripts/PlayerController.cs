@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
     private float speed = 10f;
     private float horizontalInput;
     private float xRange = 15f;
+    public bool level;
 
     [SerializeField] private GameObject foodPrefab;
     
@@ -12,11 +13,19 @@ public class PlayerController : MonoBehaviour
     {
         // Movimiento
         Movement();
-        
-        // Disparo
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (level)
         {
-            ShootFood();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                ShootFood();
+            }
+        }
+        else
+        {
+            if (Input.GetAxis("Jump") == 1)
+            {
+                ShootFood();
+            }
         }
         
     }
